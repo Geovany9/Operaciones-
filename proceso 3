@@ -1,0 +1,24 @@
+# Listado de ciudadanos que no se han vacunado
+no_vacunados = usuarios[usuarios['No_vacunado']]
+
+# Listado de ciudadanos que han recibido las dos vacunas
+vacunados_dos = usuarios[(usuarios['Pfizer'] == 1) & (usuarios['Astrazeneca'] == 1)]
+
+# Listado de ciudadanos que solamente han recibido la vacuna de Pfizer
+vacunados_pfizer = usuarios[(usuarios['Pfizer'] == 1) & (usuarios['Astrazeneca'] == 0)]
+
+# Listado de ciudadanos que solamente han recibido la vacuna de Astrazeneca
+vacunados_astrazeneca = usuarios[(usuarios['Pfizer'] == 0) & (usuarios['Astrazeneca'] == 1)]
+
+# Visualización de los resultados
+print("Listado de ciudadanos que no se han vacunado:")
+print(no_vacunados[['ID', 'Nombre']])
+
+print("\nListado de ciudadanos que han recibido las dos vacunas:")
+print(vacunados_dos[['ID', 'Nombre']])
+
+print("\nListado de ciudadanos que solamente han recibido la vacuna de Pfizer:")
+print(vacunados_pfizer[['ID', 'Nombre']])
+
+print("\nListado de ciudadanos que solamente han recibido la vacuna de Astrazeneca:")
+print(vacunados_astrazeneca[['ID', 'Nombre']])
