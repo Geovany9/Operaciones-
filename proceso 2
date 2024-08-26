@@ -1,0 +1,23 @@
+# Seleccionar 75 usuarios para Pfizer, Astrazeneca y ambos
+usuarios_pfizer = usuarios.sample(75)
+usuarios_astrazeneca = usuarios.sample(75)
+
+# Eliminar los seleccionados de la lista general
+usuarios = usuarios.drop(usuarios_pfizer.index)
+usuarios = usuarios.drop(usuarios_astrazeneca.index)
+
+# Seleccionar 75 usuarios aleatorios para recibir ambas vacunas
+usuarios_ambas = usuarios.sample(75)
+
+# Actualizar el estado de vacunación
+for usuario in usuarios_pfizer['ID']:
+    usuarios.loc[usuarios['ID'] == usuario, ['Pfizer', 'Astrazeneca']] = [1, 0]
+
+for usuario in usuarios_astrazeneca['ID']:
+    usuarios.loc[usuarios['ID'] == usuario, ['Pfizer', 'Astrazeneca']] = [0, 1]
+
+for usuario in usuarios_ambas['ID']:
+    usuarios.loc[usuarios['ID'] == usuario, ['Pfizer', 'Astrazeneca']] = [1, 1]
+
+# Ahora, los que no han recibido ninguna vacuna
+usuarios['No_vacunado'] = ((usuarios['Pfizer'] == 0) & (usuarios['Astrazeneca'] == 0))
