@@ -1,0 +1,16 @@
+import random
+import pandas as pd
+
+# Crear lista de nombres ficticios
+nombres = [f"Usuario_{i+1}" for i in range(500)]
+ids = [i+1000 for i in range(500)]  # IDs del 1000 al 1499
+
+# Crear DataFrame
+usuarios = pd.DataFrame({
+    'ID': ids,
+    'Nombre': nombres,
+})
+
+# Asignar el estado de vacunación
+usuarios['Pfizer'] = [random.choice([0, 1]) for _ in range(500)]  # 0 = No, 1 = Sí
+usuarios['Astrazeneca'] = [random.choice([0, 1]) for _ in range(500)]  # 0 = No, 1 = Sí
